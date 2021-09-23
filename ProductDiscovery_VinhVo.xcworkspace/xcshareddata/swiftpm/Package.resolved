@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Networking",
+        "repositoryURL": "https://github.com/freshOS/Networking",
+        "state": {
+          "branch": null,
+          "revision": "960867638bdb9d07870b674636326f5baf412ca1",
+          "version": "0.3.2"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
