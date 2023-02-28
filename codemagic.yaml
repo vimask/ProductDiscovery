@@ -4,6 +4,9 @@ workflows:
         max_build_duration: 120
         instance_type: mac_mini_m1
         scripts:
+          - name: Cd to code folder
+            script: | 
+              cd ./ProductDiscovery
           - name: Install CocoaPods dependencies
             script: | 
               pod install
@@ -12,7 +15,7 @@ workflows:
               set -e # exit on first failed command
 
               xcode-project run-tests \
-                  --workspace ./ProductDiscovery/ProductDiscovery_VinhVo.xcworkspace \
+                  --workspace /ProductDiscovery_VinhVo.xcworkspace \
                   --scheme ProductDiscovery_VinhVo \
                   --device "iPhone 13"
             test_report: build/ios/test/*.xml
