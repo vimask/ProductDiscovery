@@ -1,9 +1,5 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
-workspace '/Volumes/DATA/Workplace/ios/ProductDiscovery/ProductDiscovery/ProductDiscovery_VinhVo.xcworkspace'
-project '/Volumes/DATA/Workplace/ios/ProductDiscovery/ProductDiscovery/ProductDiscovery_VinhVo.xcodeproj'
-
-
 
 target 'ProductDiscovery_VinhVo' do
   # Comment the next line if you don't want to use dynamic frameworks
