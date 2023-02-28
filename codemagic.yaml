@@ -9,9 +9,9 @@ workflows:
               set -e # exit on first failed command
 
               xcode-project run-tests \
-                  --workspace ${XCODE_WORKSPACE?} \
-                  --scheme ${XCODE_SCHEME?} \
-                  --device "iPhone 12"
+                  --workspace ProductDiscovery_VinhVo.xcworkspace \
+                  --scheme ProductDiscovery_VinhVo \
+                  --device "iPhone 13"
             test_report: build/ios/test/*.xml
           - name: Add provisioning profiles
             script: |
