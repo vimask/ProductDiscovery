@@ -37,4 +37,4 @@ A project that uses VIPER for software architecture. VIPER is a backronym for Vi
 
 
 ## License
-Copyright vimask,  Licensed under the MIT license.
+Licensed under the MIT license.
