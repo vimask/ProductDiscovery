@@ -1,15 +1,18 @@
 workflows:
     ios-workflow:
-        name: Codemagic Sample Workflow
+        name: iOS Sample Workflow
         max_build_duration: 120
         instance_type: mac_mini_m1
         scripts:
+          - name: Install CocoaPods dependencies
+            script: | 
+              pod install
           - name: Run iOS tests
             script: |
               set -e # exit on first failed command
 
               xcode-project run-tests \
-                  --workspace ProductDiscovery_VinhVo.xcworkspace \
+                  --workspace ./ProductDiscovery/ProductDiscovery_VinhVo.xcworkspace \
                   --scheme ProductDiscovery_VinhVo \
                   --device "iPhone 13"
             test_report: build/ios/test/*.xml
