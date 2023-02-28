@@ -1,5 +1,41 @@
 workflows:
-    sample-workflow:
+    ios-workflow:
         name: Codemagic Sample Workflow
         max_build_duration: 120
         instance_type: mac_mini_m1
+        scripts:
+          - name: Run iOS tests
+            script: |
+              set -e # exit on first failed command
+
+              xcode-project run-tests \
+                  --workspace ${XCODE_WORKSPACE?} \
+                  --scheme ${XCODE_SCHEME?} \
+                  --device "iPhone 12"
+            test_report: build/ios/test/*.xml
+          - name: Add provisioning profiles
+            script: |
+              set -e # exit on first failed command
+
+              PROFILES_HOME="$HOME/Library/MobileDevice/Provisioning Profiles"
+              mkdir -p "$PROFILES_HOME"
+              echo ${PROVISIONING_PROFILE?} | base64 --decode > "$PROFILES_HOME/$(uuidgen).mobileprovision"
+          - name: Add signing certificate
+            script: |
+              set -e # exit on first failed command
+
+              echo ${CERTIFICATE?} | base64 --decode > /tmp/certificate.p12
+              keychain initialize
+              keychain add-certificates \
+                  --certificate /tmp/certificate.p12 \
+                  --certificate-password ${CERTIFICATE_PASSWORD?}
+          - name: Increment build number
+            script: agvtool new-version -all $BUILD_NUMBER
+          - name: Set up code signing settings on Xcode project
+            script: xcode-project use-profiles
+          - name: Build ipa for distribution
+            script: xcode-project build-ipa \
+                        --workspace "${XCODE_WORKSPACE?}" \
+                        --scheme "${XCODE_SCHEME?}"
+        artifacts:
+          - build/ios/ipa/*.ipa
