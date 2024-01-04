@@ -1,0 +1,27 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'ProductDiscovery_VinhVo' do
+  # Comment the next line if you don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for ProductDiscovery_VinhVo
+
+  pod 'SwiftLint'
+  pod 'SnapKit', '~> 5.0.0'
+  pod 'GSMessages'
+  pod 'Kingfisher', '~> 4.0'
+  pod 'Localize-Swift'
+  pod 'ReachabilitySwift', '~> 3'
+  pod 'RealmSwift', '~> 10.25.0'
+  
+  target 'ProductDiscovery_VinhVoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'ProductDiscovery_VinhVoUITests' do
+    # Pods for testing
+  end
+
+end
